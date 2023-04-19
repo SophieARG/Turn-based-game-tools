@@ -29,8 +29,8 @@ class Player:
 
     def call(self, funcname, *args, **kwargs):
         if self.error is not None: return
-        result = Call(getattr(self.instance, funcname))
         try:
+            result = Call(getattr(self.instance, funcname))
             thread = threading.Thread(target = result.call, args = (*args, ), kwargs = {**kwargs})
             thread.daemon = True
             thread.start()
